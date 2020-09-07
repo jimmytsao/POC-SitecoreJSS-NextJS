@@ -9,7 +9,12 @@ const contextFactory = new SitecoreContextFactory()
 function MyApp ({ Component, pageProps }) {
   return (
     <SitecoreContext componentFactory={componentFactory} contextFactory={contextFactory}>
+      <h1>This was rendered by NextJS</h1>
       <Component {...pageProps} />
+      <h2>JSON Received from Sitecore</h2>
+      <pre>
+        {JSON.stringify(pageProps, null, 2)}
+      </pre>
     </SitecoreContext>
   )
 }
