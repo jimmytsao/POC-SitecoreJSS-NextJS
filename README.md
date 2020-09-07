@@ -1,30 +1,15 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# [POC] - Sitecore JSS with Next.js
+This is a proof of concept using [Next.js](https://nextjs.org/) as the frontend rendering service for [Sitecore JSS](https://jss.sitecore.com/).
 
 ## Getting Started
 
-First, run the development server:
+1. ```npm install```
+2. Add a ```.env.local``` file to the root with the ```SITECORE_ENDPOINT```  and ```SITECORE_API_KEY``` environment variables.
+3. ```npm dev```
+4. Open [http://localhost:3000](http://localhost:3000) or [http://localhost:3000/styleguide](http://localhost:3000/styleguide) with your browser to see the result.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+## Next.js Rendering
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This POC has been setup to perform Static Generation with a 1s revalidation and fallback. This means that at build time, Next.js will generate static pages for a predefined list of pages. When a user requests a page that was statically generated, Next.js will serve the statically generated page. Since a 1s revalidation option was defined, after serving the statically generated page to the user, Next.js will regenerate the requested page with the latest data and add it to the cache of statically generated pages. With the fallback option enabled, if a page requested does not have a statically generated page, Next.js will dynamically generate the page and add it to the cache of statically generated pages.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/import?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+More info about these modes can be found in the [Next.js docs](https://nextjs.org/docs/basic-features/data-fetching).
