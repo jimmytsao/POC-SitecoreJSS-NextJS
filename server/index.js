@@ -4,11 +4,13 @@ const { parse } = require('url')
 const path = require('path')
 const next = require('next')
 const bodyParser = require('body-parser')
+const config = require('./../next.config.js')
 
 const dev = process.env.NODE_ENV !== 'production'
 const nextApp = next({
   dev,
-  dir: path.resolve(__dirname, '..')
+  dir: path.resolve(__dirname, '..'),
+  conf: config
 })
 const handle = nextApp.getRequestHandler()
 
